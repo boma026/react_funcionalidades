@@ -14,7 +14,7 @@ export default function Page() {
 
 const handleFormSubmit = (event: FormEvent<HTMLFormElement>) =>{
   event.preventDefault();
-  alert("mandando...")
+  alert("mandando....")
 }
 
   return (
