@@ -30,6 +30,13 @@ export default function Page() {
     setCount(count + 1)
   }
 
+  const [count2, setCount2] = useState(0)
+
+  const handlebutton = () => {
+    setCount2(count2 + 2)
+    setCount2(c => c + 2)
+  }
+
   const [nameInput, setNameInput] = useState('')
 
   return (
@@ -61,6 +68,9 @@ export default function Page() {
         value={nameInput}
         onChange={e => setNameInput(e.target.value)}
       />
+
+      <button onClick={handlebutton} className="bg-blue-700 text-white p-3 rounded-md"></button>
+      <p>{count2}</p>
     </div>
-  );
+  )
 }
