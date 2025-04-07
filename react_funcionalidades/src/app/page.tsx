@@ -1,5 +1,6 @@
 "use client";
 import { CustomButton } from "@/components/customButton";
+import { Person } from "@/types/Person";
 import { FormEvent } from "react";
 import { useState } from "react";
 
@@ -39,6 +40,8 @@ export default function Page() {
 
   const [nameInput, setNameInput] = useState('')
 
+  const [fullName, setFullName] = useState<Person>({ name: '', lastName: ''})
+
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center ">
       <button onClick={cliqueButao} className="p-3 bg-blue-700 text-white rounded-md">Clique Aqui</button>
@@ -71,6 +74,22 @@ export default function Page() {
 
       <button onClick={handlebutton} className="bg-blue-700 text-white p-3 rounded-md"></button>
       <p>{count2}</p>
+
+      <input
+        type="text"
+        placeholder="Nome"
+        className="border border-black p-3 text-2xl text-black rounded-md mb-3 "
+        value={fullName.name}
+        onChange={e => setFullName({...fullName, name: e.target.value})}/>
+      <input
+        type="text"
+        placeholder="Sobreome"
+        className="border border-black p-3 text-2xl text-black rounded-md mb-3"
+        value={fullName.lastName}
+        onChange={e => setFullName({...fullName, lastName: e.target.value})}/>
+
+      <p>Meu nome completo é:</p>
+      <p>{fullName.name} {fullName.lastName}</p>  
     </div>
   )
 }
