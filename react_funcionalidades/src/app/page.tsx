@@ -1,5 +1,6 @@
 "use client";
 import { CustomButton } from "@/components/customButton";
+import { ExampleAreas } from "@/components/ExampleAreas";
 import { Person } from "@/types/Person";
 import { FormEvent } from "react";
 import { useState } from "react";
@@ -13,14 +14,6 @@ export default function Page() {
   }
 
   const [count, setCount] = useState(0);
-
-  const cliqueButao = () => {
-    alert("funcionou")
-  }
-
-  const clique1 = () => alert("clicou1")
-  const clique2 = () => alert("clicou2")
-  const clique3 = () => alert("clicou3")
 
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) =>{
   event.preventDefault();
@@ -42,13 +35,34 @@ export default function Page() {
 
   const [fullName, setFullName] = useState<Person>({ name: '', lastName: ''})
 
-  return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center ">
-      <button onClick={cliqueButao} className="p-3 bg-blue-700 text-white rounded-md">Clique Aqui</button>
-      <CustomButton label="Clique aqui1" onClick={clique1}/> 
-      <CustomButton label="Clique aqui2" onClick={clique2}/>
-      <CustomButton label="Clique aqui3" onClick={clique3}/>
+   const cliqueButao = () => {
+    alert("funcionou")
+  }
 
+  const cliqueButaoParametro = (mensagem: string) =>
+    alert(mensagem);
+
+  const clique1 = () => alert("clicou1")
+  const clique2 = () => alert("clicou2")
+  const clique3 = () => alert("clicou3")
+
+  return (
+    <div>
+      <ExampleAreas>
+        <p>Maneira mais comum de criar um evento de clique:</p>
+        <button onClick={cliqueButao} className="p-3 bg-blue-700 text-white rounded-md"> 1) Clique Aqui</button>
+        <p>Caso queira passar com algum parâmetro</p>
+        <button onClick={() => cliqueButaoParametro("funcionou com parametro")} className="p-3 bg-blue-700 text-white rounded-md"> 2) Clique Aqui</button>
+      </ExampleAreas>
+
+      <ExampleAreas>
+        <p>3)Passando o evento via props do componente customButton</p>
+        <CustomButton label="Clique aqui1" onClick={clique1}/> 
+        <CustomButton label="Clique aqui2" onClick={clique2}/>
+        <CustomButton label="Clique aqui3" onClick={clique3}/>
+      </ExampleAreas>
+      
+      {/*
       <h3 className="text-5xl mb-3 pt-3">Form de login</h3>
       
       <form onSubmit={handleFormSubmit}>
@@ -89,7 +103,7 @@ export default function Page() {
         onChange={e => setFullName({...fullName, lastName: e.target.value})}/>
 
       <p>Meu nome completo é:</p>
-      <p>{fullName.name} {fullName.lastName}</p>  
+      <p>{fullName.name} {fullName.lastName}</p>  */}
     </div>
   )
 }
