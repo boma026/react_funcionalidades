@@ -114,26 +114,6 @@ export default function Page() {
       <p className="font-bold "> Meu nome completo é: {fullName.name} {fullName.lastName}</p>
       </ExampleAreas>
          
-      {/*
-
-      <button onClick={handlebutton} className="bg-blue-700 text-white p-3 rounded-md"></button>
-      <p>{count2}</p>
-
-      <input
-        type="text"
-        placeholder="Nome"
-        className="border border-black p-3 text-2xl text-black rounded-md mb-3 "
-        value={fullName.name}
-        onChange={e => setFullName({...fullName, name: e.target.value})}/>
-      <input
-        type="text"
-        placeholder="Sobreome"
-        className="border border-black p-3 text-2xl text-black rounded-md mb-3"
-        value={fullName.lastName}
-        onChange={e => setFullName({...fullName, lastName: e.target.value})}/>
-
-      <p>Meu nome completo é:</p>
-      <p>{fullName.name} {fullName.lastName}</p>  */}
     </div>
   )
 }
