@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react"
 export default function tarefas ()  {
     
     type ListadeTarefas = {
+        id: number,
         checked: boolean,
         conteudo: string
     }
@@ -16,17 +17,17 @@ export default function tarefas ()  {
     const handleButtonAdd = (e: FormEvent) => {
         e.preventDefault();
         if (tarefa.trim() === "") return;
-        setTarefas([...listaTarefas, {checked: false, conteudo: tarefa}]);
+        setTarefas([...listaTarefas, {id: listaTarefas.length, checked: false, conteudo: tarefa}]);
         setTarefa("");
     }
 
-    const handleButtonDelete = (key: number) => {
-        setTarefas(listaTarefas.filter((item,index) => key !== index  ));
+    const handleButtonDelete = (id: number) => {
+        setTarefas(listaTarefas.filter(item => id !== item.id));
     }
 
-    const toggleItem = (key:number) => {
-        setTarefas(listaTarefas.map((item, index) => 
-            index === key ? {...item, checked: !item.checked} : item    
+    const toggleItem = (id:number) => {
+        setTarefas(listaTarefas.map(item => 
+            item.id === id ? {...item, checked: !item.checked} : item    
         ))
     }
     return (
@@ -51,10 +52,10 @@ export default function tarefas ()  {
               
             </div>
               <ul className="list-disc">
-                {listaTarefas.map((item, key) =>
-                    <li key={key}>
-                        <input type="checkbox" className="mr-3 w-6 h-6" onChange={() => toggleItem(key)} checked={item.checked}/>
-                        {item.conteudo} <button className="hover:underline" onClick={() => handleButtonDelete(key)}>- [deletar]</button></li> )}                   
+                {listaTarefas.map((item) =>
+                    <li key={item.id}>
+                        <input type="checkbox" className="mr-3 w-6 h-6" onChange={() => toggleItem(item.id)} checked={item.checked}/>
+                        {item.conteudo} <button className="hover:underline" onClick={() => handleButtonDelete(item.id)}>- [deletar]</button></li> )}                   
                 </ul>
         </div>
     )
